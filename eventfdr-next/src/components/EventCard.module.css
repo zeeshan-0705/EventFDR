@@ -1,0 +1,237 @@
+/* ===== Event Card Styles ===== */
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eventCard:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.5),
+    0 0 30px -10px rgba(99, 102, 241, 0.2);
+}
+
+.eventCardFeatured {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.eventCardFeatured:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Image Container */
+.eventCardImageContainer {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.eventCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eventCard:hover .eventCardImage {
+  transform: scale(1.05);
+}
+
+.eventCardOverlay {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.eventCardFeaturedBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.eventCardCategory {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.375rem 0.875rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+/* Content */
+.eventCardContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.25rem;
+  gap: 1rem;
+}
+
+.eventCardHeader {
+  flex: 1;
+}
+
+.eventCardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.eventCardDescription {
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta Info */
+.eventCardMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.eventCardMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #a1a1aa;
+}
+
+.eventCardMetaItem svg {
+  color: #60a5fa;
+  flex-shrink: 0;
+}
+
+/* Footer */
+.eventCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.eventCardPrice {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventCardPriceLabel {
+  font-size: 0.75rem;
+  color: #71717a;
+}
+
+.eventCardPriceValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.eventCardAction {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #60a5fa;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eventCard:hover .eventCardAction {
+  gap: 0.625rem;
+}
+
+/* Availability */
+.eventCardAvailability {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eventCardAvailabilityBar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.eventCardAvailabilityFill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.high {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.medium {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.low {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.eventCardAvailabilityText {
+  font-size: 0.75rem;
+  color: #71717a;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .eventCardContent {
+    padding: 1rem;
+  }
+
+  .eventCardTitle {
+    font-size: 1rem;
+  }
+
+  .eventCardMeta {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .eventCardMetaItem {
+    flex: 1 0 auto;
+  }
+}

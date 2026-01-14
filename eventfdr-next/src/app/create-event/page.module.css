@@ -1,0 +1,383 @@
+/* ===== Create Event Page Styles ===== */
+.createEventPage {
+  min-height: 100vh;
+  padding-top: 70px;
+  padding-bottom: 4rem;
+}
+
+.createEventAuthRequired {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.authRequiredContent {
+  text-align: center;
+  max-width: 400px;
+}
+
+.authRequiredContent svg {
+  color: #3f3f46;
+  margin-bottom: 1.5rem;
+}
+
+.authRequiredContent h2 {
+  margin-bottom: 0.5rem;
+}
+
+.authRequiredContent p {
+  color: #a1a1aa;
+  margin-bottom: 1.5rem;
+}
+
+/* Header */
+.createEventHeader {
+  background: linear-gradient(
+    180deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    transparent 100%
+  );
+  padding: 2rem 1.5rem 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a1a1aa;
+  font-size: 0.9375rem;
+  margin-bottom: 1rem;
+  transition: color 150ms ease;
+}
+
+.backLink:hover {
+  color: white;
+}
+
+.createEventHeader h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.createEventHeader p {
+  color: #a1a1aa;
+}
+
+/* Progress Steps */
+.progressSteps {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  max-width: 150px;
+  position: relative;
+}
+
+.progressStep::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: calc(50% + 24px);
+  right: calc(-50% + 24px);
+  height: 2px;
+  background: #27272a;
+}
+
+.progressStep:last-child::before {
+  display: none;
+}
+
+.progressStep.completed::before {
+  background: #a78bfa;
+}
+
+.stepNumber {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #27272a;
+  border: 2px solid #3f3f46;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #71717a;
+  transition: all 200ms ease;
+  z-index: 1;
+}
+
+.progressStep.active .stepNumber {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #a78bfa;
+  color: white;
+}
+
+.progressStep.completed .stepNumber {
+  background: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+.stepTitle {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #71717a;
+  text-align: center;
+}
+
+.progressStep.active .stepTitle {
+  color: white;
+}
+
+/* Content */
+.createEventContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.createEventForm {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.formStep {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.stepHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stepHeading svg {
+  color: #a78bfa;
+}
+
+/* Form Elements */
+.formGroup {
+  margin-bottom: 1.25rem;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d4d4d8;
+  margin-bottom: 0.5rem;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 0.9375rem;
+  transition: all 150ms ease;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: #52525b;
+}
+
+.formInput.error,
+.formSelect.error,
+.formTextarea.error {
+  border-color: #ef4444;
+}
+
+.formHelper {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #71717a;
+}
+
+.formError {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: #f87171;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.highlightsInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Form Actions */
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.formActions button:only-child {
+  margin-left: auto;
+}
+
+/* Review Preview */
+.reviewPreview {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.reviewImage {
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+}
+
+.reviewImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewContent {
+  padding: 1.5rem;
+}
+
+.reviewContent h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.reviewShortDesc {
+  color: #a1a1aa;
+  margin-bottom: 1.5rem;
+}
+
+.reviewMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.reviewMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: #d4d4d8;
+}
+
+.reviewMetaItem svg {
+  color: #a78bfa;
+}
+
+.reviewHighlights h4 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.reviewHighlights ul {
+  list-style: none;
+}
+
+.reviewHighlights li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0;
+  color: #d4d4d8;
+  font-size: 0.9375rem;
+}
+
+.reviewHighlights li::before {
+  content: '✓';
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .createEventHeader {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .createEventHeader h1 {
+    font-size: 1.5rem;
+  }
+
+  .progressSteps {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 1.5rem 1rem;
+  }
+
+  .progressStep {
+    min-width: 100px;
+  }
+
+  .stepTitle {
+    font-size: 0.75rem;
+  }
+
+  .createEventForm {
+    padding: 1.5rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .formActions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+
+  .formActions button {
+    width: 100%;
+    justify-content: center;
+  }
+}
