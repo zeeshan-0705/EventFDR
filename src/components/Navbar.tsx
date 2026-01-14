@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { getInitials } from '@/utils/helpers';
@@ -102,7 +103,13 @@ const Navbar = () => {
                 >
                   <div className={styles.navbarAvatar}>
                     {user?.avatar ? (
-                      <img src={user.avatar} alt={user.name} />
+                      <Image 
+                        src={user.avatar} 
+                        alt={user.name} 
+                        width={32} 
+                        height={32}
+                        className={styles.navbarAvatarImg}
+                      />
                     ) : (
                       <span>{getInitials(user?.name)}</span>
                     )}
@@ -127,6 +134,14 @@ const Navbar = () => {
                     >
                       <User size={16} />
                       <span>My Profile</span>
+                    </Link>
+                    <Link 
+                      href="/admin/events" 
+                      className={styles.navbarDropdownItem}
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      <Settings size={16} />
+                      <span>Admin Dashboard</span>
                     </Link>
                     <Link 
                       href="/my-tickets" 
@@ -201,6 +216,10 @@ const Navbar = () => {
               <Link href="/profile" className={styles.navbarMobileLink}>
                 <User size={20} />
                 <span>My Profile</span>
+              </Link>
+              <Link href="/admin/events" className={styles.navbarMobileLink}>
+                <Settings size={20} />
+                <span>Admin Dashboard</span>
               </Link>
               <button 
                 className={`${styles.navbarMobileLink} ${styles.navbarMobileLogout}`}

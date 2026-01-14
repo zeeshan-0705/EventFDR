@@ -1,0 +1,187 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--neutral-800);
+}
+
+.title h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--neutral-400);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  background: var(--neutral-900);
+  border: 1px solid var(--neutral-800);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.statContent h3 {
+  font-size: 0.875rem;
+  color: var(--neutral-400);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--neutral-100);
+}
+
+.eventsTable {
+  background: var(--neutral-900);
+  border: 1px solid var(--neutral-800);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--neutral-800);
+  font-weight: 600;
+  color: var(--neutral-300);
+  font-size: 0.875rem;
+}
+
+.eventRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--neutral-800);
+  align-items: center;
+  color: var(--neutral-200);
+  transition: background-color 0.2s;
+}
+
+.eventRow:last-child {
+  border-bottom: none;
+}
+
+.eventRow:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.eventTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.eventImage {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.eventInfo h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.eventDate {
+  font-size: 0.8125rem;
+  color: var(--neutral-500);
+}
+
+.status {
+  text-transform: capitalize;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.actionBtn {
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  color: var(--neutral-400);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.actionBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-100);
+}
+
+.deleteBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error-500);
+}
+
+@media (max-width: 1024px) {
+  .tableHeader, .eventRow {
+    grid-template-columns: 2fr 1fr 1fr 0.5fr;
+  }
+  
+  .tableHeader > *:nth-child(4),
+  .tableHeader > *:nth-child(5),
+  .eventRow > *:nth-child(4),
+  .eventRow > *:nth-child(5) {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .tableHeader {
+    display: none;
+  }
+
+  .eventRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+}

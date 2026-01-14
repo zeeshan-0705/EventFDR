@@ -88,47 +88,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     
     // Simulate async check
-    setTimeout(checkAuth, 500);
+    setTimeout(checkAuth, 300);
   }, []);
 
-  // Login function
+  // Login function - calls API
   const login = async (email: string, password: string) => {
     dispatch({ type: 'AUTH_LOADING' });
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
       
-      // Get users from storage or use demo account
-      const users = storage.get<User[]>('eventfdr_users') || [];
-      const user = users.find(u => u.email === email);
+      const result = await response.json();
       
-      // Demo account for testing
-      if (email === 'demo@eventfdr.com' && password === 'demo123') {
-        const demoUser: User = {
-          id: 'demo-user',
-          email: 'demo@eventfdr.com',
-          name: 'Demo User',
-          phone: '9876543210',
-          avatar: null,
-          createdAt: new Date().toISOString()
-        };
-        storage.set('eventfdr_user', demoUser);
-        dispatch({ type: 'AUTH_SUCCESS', payload: demoUser });
-        return { success: true };
+      if (!result.success) {
+        throw new Error(result.error || 'Login failed');
       }
       
-      if (!user) {
-        throw new Error('No account found with this email');
-      }
-      
-      if (user.password !== password) {
-        throw new Error('Incorrect password');
-      }
-      
-      const { password: _, ...userWithoutPassword } = user;
-      storage.set('eventfdr_user', userWithoutPassword);
-      dispatch({ type: 'AUTH_SUCCESS', payload: userWithoutPassword as User });
+      // Save user to localStorage for persistence
+      storage.set('eventfdr_user', result.data);
+      dispatch({ type: 'AUTH_SUCCESS', payload: result.data });
       
       return { success: true };
     } catch (error) {
@@ -138,36 +120,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Register function
+  // Register function - calls API
   const register = async (userData: { name: string; email: string; phone?: string; password: string }) => {
     dispatch({ type: 'AUTH_LOADING' });
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      });
       
-      const users = storage.get<User[]>('eventfdr_users') || [];
+      const result = await response.json();
       
-      // Check if email already exists
-      if (users.some(u => u.email === userData.email)) {
-        throw new Error('An account with this email already exists');
+      if (!result.success) {
+        throw new Error(result.error || 'Registration failed');
       }
       
-      const newUser: User = {
-        id: 'user-' + Date.now(),
-        ...userData,
-        avatar: null,
-        createdAt: new Date().toISOString()
-      };
-      
-      // Save to users list
-      users.push(newUser);
-      storage.set('eventfdr_users', users);
-      
-      // Log in the user
-      const { password: _, ...userWithoutPassword } = newUser;
-      storage.set('eventfdr_user', userWithoutPassword);
-      dispatch({ type: 'AUTH_SUCCESS', payload: userWithoutPassword as User });
+      // Save user to localStorage for persistence
+      storage.set('eventfdr_user', result.data);
+      dispatch({ type: 'AUTH_SUCCESS', payload: result.data });
       
       return { success: true };
     } catch (error) {
@@ -186,18 +158,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // Update user profile
   const updateProfile = async (updates: Partial<User>) => {
     try {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
       const updatedUser = { ...state.user, ...updates } as User;
       storage.set('eventfdr_user', updatedUser);
-      
-      // Update in users list too
-      const users = storage.get<User[]>('eventfdr_users') || [];
-      const userIndex = users.findIndex(u => u.id === state.user?.id);
-      if (userIndex !== -1) {
-        users[userIndex] = { ...users[userIndex], ...updates };
-        storage.set('eventfdr_users', users);
-      }
       
       dispatch({ type: 'UPDATE_USER', payload: updates });
       return { success: true };
